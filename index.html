@@ -1151,11 +1151,12 @@
             <p class="form-card-sub">We'll get back to you to set up your free consultation.</p>
 
             <div class="form-success" id="formSuccess">
-                ✓ Thanks! Your email client will open — just hit send and we'll be in touch.
+                ✓ ✓ Thanks! Your consultation request has been submitted successfully. We'll reach out shortly to schedule your SAT consultation.
             </div>
 
-            <form id="contactForm" onsubmit="handleSubmit(event)">
-                <div class="form-row">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="8573d918-95cb-4e10-9804-834fa9c63b2b">
+                <input type="hidden" name="subject" value="New Merit Point Prep Consultation Request">
                     <div>
                         <label class="form-label" for="parentName">Parent name</label>
                         <input class="form-input" type="text" id="parentName" name="parentName" required>
@@ -1231,27 +1232,7 @@
             });
         });
 
-        function handleSubmit(e) {
-            e.preventDefault();
-            const f = e.target;
-            const data = {
-                parent: f.parentName.value,
-                student: f.studentName.value,
-                email: f.email.value,
-                phone: f.phone.value,
-                grade: f.grade.value,
-                service: f.service.value,
-                message: f.message.value
-            };
-
-            const subject = `New consultation request from ${data.parent}`;
-            const body = `Parent: ${data.parent}%0D%0AStudent: ${data.student}%0D%0AEmail: ${data.email}%0D%0APhone: ${data.phone}%0D%0AGrade: ${data.grade}%0D%0AProgram: ${data.service}%0D%0A%0D%0AMessage:%0D%0A${data.message}`;
-
-            window.location.href = `mailto:meritpointinfo@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-            document.getElementById('formSuccess').classList.add('show');
-            setTimeout(() => f.reset(), 500);
-        }
+     
     </script>
 </body>
 </html>
